@@ -14,10 +14,20 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.7'
 # Use Devise
 gem 'devise'
+# Use devise auth token
+gem 'devise_token_auth'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.5'
+end
+
+group :test do
+    gem 'factory_girl_rails', '~> 4.0'
+    gem 'shoulda-matchers', '~> 3.1'
+    gem 'faker'
+    gem 'database_cleaner'
 end
 
 group :development do
