@@ -13,9 +13,6 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.1]
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
 
-      ## Rememberable
-      t.datetime :remember_created_at
-
       ## Trackable
       t.integer  :sign_in_count, :default => 0, :null => false
       t.datetime :current_sign_in_at
@@ -27,10 +24,11 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.1]
       t.string   :confirmation_token
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email # Only if using reconfirmable
+      t.string   :unconfirmed_email
 
       ## Tokens
-      t.text :tokens
+      t.text    :tokens
+      t.integer :user_type, :null => false, :default => 1
 
       t.timestamps
     end

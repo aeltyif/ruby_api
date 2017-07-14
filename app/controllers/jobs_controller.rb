@@ -3,6 +3,7 @@ class JobsController < ApplicationController
   include ExceptionHandler
 
   before_action :set_job, only: [:show, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /jobs
   def index
