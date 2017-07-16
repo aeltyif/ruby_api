@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713115241) do
+ActiveRecord::Schema.define(version: 20170715080934) do
+
+  create_table "applicants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.boolean "seen", default: false, null: false
+    t.bigint "user_id", null: false
+    t.bigint "job_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_applicants_on_job_id"
+    t.index ["user_id", "job_id"], name: "index_applicants_on_user_id_and_job_id", unique: true
+    t.index ["user_id"], name: "index_applicants_on_user_id"
+  end
 
   create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -38,7 +49,7 @@ ActiveRecord::Schema.define(version: 20170713115241) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.text "tokens"
-    t.integer "user_type", default: 1, null: false
+    t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -46,5 +57,7 @@ ActiveRecord::Schema.define(version: 20170713115241) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "applicants", "jobs"
+  add_foreign_key "applicants", "users"
   add_foreign_key "jobs", "users"
 end
