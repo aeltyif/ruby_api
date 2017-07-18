@@ -6,12 +6,12 @@ class ApplicantsController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index]
 
   def index
-    job = Job.where(job_id: params[:job_id], user_id: current_user.id)
-    if job
+    @job = Job.where(job_id: params[:job_id], user_id: current_user.id)
+    if @job
       @applicants = Applicant.where(job_id: params[:job_id])
       json_response(@applicants)
     else
-      json_response(errors: ["No job was found with this user"], :unprocessable_entity)
+      json_response(@job, :unprocessable_entity)
     end
   end
 
