@@ -1,21 +1,18 @@
 default: &default
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: 123
-  socket: /var/run/mysqld/mysqld.sock
+  host: ec2-79-125-118-221.eu-west-1.compute.amazonaws.com
+  username: olxlvvapmkmshq
+  password: de71e9c9b07e59fcf14a8ae97e1c0684107cc4375edacb1c5dba06a387708065
 
 development:
   <<: *default
-  database: ruby_api
+  database: ddoh86ovaigj22
 
 test:
   <<: *default
-  database: ruby_api
+  database: ddoh86ovaigj22
 
 production:
   <<: *default
-  database: ruby_api
-  username: ruby_api
-  password: <%= ENV['RUBY_API_DATABASE_PASSWORD'] %>
+  database: ddoh86ovaigj22
