@@ -11,7 +11,7 @@ class ApplicantsController < ApplicationController
       @applicants = Applicant.where(job_id: params[:job_id])
       json_response(@applicants)
     else
-      # Do Something
+      json_response(errors: ["No job was found with this user"], :unprocessable_entity)
     end
   end
 
@@ -28,7 +28,7 @@ class ApplicantsController < ApplicationController
   end
 
   def by_user
-    @user_applications = Applicant.where(user_id: 1)
+    @user_applications = Applicant.where(user_id: current_user.id)
     json_response(@user_applications)
   end
 
