@@ -11,7 +11,6 @@ class JobsController < ApplicationController
   end
 
   def create
-    # Plug the current authenticated user
     jp = job_params
     jp[:user_id] = current_user.id
     @job = Job.create!(jp)

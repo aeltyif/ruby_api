@@ -11,17 +11,18 @@ class ApplicantsController < ApplicationController
   end
 
   def create
-    @applicant = Applicant.create!(user_id: current_user.id, job_id: params[:id])
+    @applicant = Applicant.create!(user_id: current_user.id, job_id: params[:job_id])
     json_response(@applicant, :created)
   end
 
   def show
-    @applicant.update(seen: 1)
+    if !@ applicant.seen
+      @applicant.update(seen: 1)
+    end
     json_response(@applicant)
   end
 
   private
-
   def set_applicant
     @applicant = Applicant.find(params[:id])
   end
