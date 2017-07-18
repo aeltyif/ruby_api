@@ -2,12 +2,17 @@ class ApplicantsController < ApplicationController
   include Response
   include ExceptionHandler
 
-  before_action :set_applicant, only: [:show, :update, :destroy]
+  before_action :set_applicant, only: [:show]
   before_action :authenticate_user!, :except => [:show, :index]
 
   def index
-    @applicants = Applicant.all
-    json_response(@applicants)
+    job = Job.where(job_id: params[:job_id], user_id: current_user.id)
+    if job
+      @applicants = Applicant.where(job_id: params[:job_id])
+      json_response(@applicants)
+    else
+      # Do Something
+    end
   end
 
   def create
@@ -16,13 +21,19 @@ class ApplicantsController < ApplicationController
   end
 
   def show
-    if !@ applicant.seen
+    if !@applicant.seen
       @applicant.update(seen: 1)
     end
     json_response(@applicant)
   end
 
+  def by_user
+    @user_applications = Applicant.where(user_id: 1)
+    json_response(@user_applications)
+  end
+
   private
+
   def set_applicant
     @applicant = Applicant.find(params[:id])
   end

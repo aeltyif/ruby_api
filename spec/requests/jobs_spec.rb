@@ -58,7 +58,6 @@ RSpec.describe 'Jobs API', type: :request do
     context 'when the request is valid' do
       before { post '/jobs', params: valid_attributes }
       it 'creates a job' do
-        Rails.logger.info response
         expect(json['title']).to eq('Learn Elm')
       end
       it 'returns status code 201' do

@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     post '/applicants',     to: 'applicants#create'
     get  '/applicants/:id', to: 'applicants#show'
   end
+  # Custom route to list the job seeker applications
+  get 'applications',  to: 'applicants#by_user'
 end
