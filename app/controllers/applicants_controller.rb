@@ -45,7 +45,7 @@ class ApplicantsController < ApplicationController
   end
 
   private
-  # get applicant by id
+  # Get applicant by id
   def set_applicant
     @applicant = Applicant.find(params[:id])
   end
