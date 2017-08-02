@@ -3,7 +3,7 @@ This is my solution for a code challenge, creating restful API using ruby on rai
 Job Dashboard, where you have admin to submit job posts, and job seekers to apply to those jobs
 
 # Deployment
-- Heroku was used, and it's like is : https://still-hamlet-26338.herokuapp.com/
+- Heroku was used, and it's link is : https://still-hamlet-26338.herokuapp.com/
 
 # Todo
 - Create spec files for testing (User, Applicant)
