@@ -29,7 +29,7 @@ class ApplicantsController < ApplicationController
     authorize Applicant
     if Job.where(id: @applicant.job_id, user_id: current_user.id).present?
       if !@applicant.seen
-        @applicant.update(seen: 1)
+        @applicant.update(seen: 100)
       end
       json_response(@applicant)
     else
