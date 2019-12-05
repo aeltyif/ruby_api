@@ -11,7 +11,7 @@ gem 'rails', '~> 5.1.1'
 # Use mysql as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 # Use Devise
 gem 'devise'
 # Use devise auth token
